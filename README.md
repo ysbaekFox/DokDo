@@ -1,0 +1,2 @@
+# DokDo
+QT Chat Application
