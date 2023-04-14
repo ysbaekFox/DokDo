@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/fonts/Helvetica_Neue_UltraLight.ttf</file>
+        <file>resources/fonts/Helvetica_Neue_Medium_Extended.ttf</file>
+    </qresource>
+</RCC>

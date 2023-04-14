@@ -9,13 +9,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 6.2 COMPONENTS Quick REQUIRED)
 
+qt_add_resources(RESOURCES resources.qrc)
+
 qt_add_executable(appDokDo
     Utility/Network/Socket/TCPServerSocket.cpp
     Utility/Network/Socket/TCPServerSocket.hpp
     Utility/Network/Socket/TCPClientSocket.cpp
     Utility/Network/Socket/TCPClientSocket.hpp
-
     main.cpp
+    ${RESOURCES}
 )
 
 qt_add_qml_module(appDokDo
