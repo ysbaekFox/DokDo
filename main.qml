@@ -35,4 +35,30 @@ Window {
             bottom: mainWindow.bottom
         }
     }
+
+    Rectangle {
+        id: mainChatBox
+        width: mainWindow.width - 300
+        height: mainWindow.height - topRectangle.height
+
+        anchors {
+            left: leftRetangle.right
+            right: mainWindow.right
+            top: topRectangle.bottom
+            bottom: mainWindow.bottom
+        }
+
+        TextField {
+            width: mainChatBox.width
+            height: 300
+
+            font.family: helveticaNeue.font.family
+            font.pixelSize: 16
+            selectByMouse: true
+
+            anchors {
+                bottom: mainChatBox.bottom
+            }
+        }
+    }
 }
