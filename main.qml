@@ -8,7 +8,7 @@ Window {
     visible: true
     title: qsTr("DokDo-Chat")
 
-    property FontLoader helveticaNeue: FontLoader { id: font; source: "/resources/fonts/Helvetica_Neue_Medium_Extended.ttf" }
+    property FontLoader chatFont: FontLoader { id: font; source: "/resources/fonts/AppleSDGothicNeoR.ttf" }
 
     Rectangle {
         id: topRectangle
@@ -52,8 +52,8 @@ Window {
             width: mainChatBox.width
             height: 300
 
-            font.family: helveticaNeue.font.family
-            font.pixelSize: 16
+            font.family: chatFont.font.family
+            font.pixelSize: 35
             selectByMouse: true
 
             anchors {
