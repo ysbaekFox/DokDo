@@ -30,7 +30,6 @@ Window {
 
         anchors {
             left: mainWindow.left
-            right: mainChatBox.left
             top: topRectangle.bottom
             bottom: mainWindow.bottom
         }
@@ -38,26 +37,36 @@ Window {
 
     Rectangle {
         id: mainChatBox
-        width: mainWindow.width - 300
-        height: mainWindow.height - topRectangle.height
+        width: mainWindow.width - leftRetangle.width - 100
+        height: 219
+        border.color: "black"
+        radius: 20
 
         anchors {
             left: leftRetangle.right
-            right: mainWindow.right
-            top: topRectangle.bottom
-            bottom: mainWindow.bottom
+            leftMargin: 50
+            bottom: leftRetangle.bottom
+            bottomMargin: 20
         }
 
         TextField {
-            width: mainChatBox.width
-            height: 300
+            id: mainChatTextField
+            width: mainWindow.width - leftRetangle.width - 100 - 20
+            height: mainChatBox.height * 0.4
 
             font.family: chatFont.font.family
             font.pixelSize: 35
             selectByMouse: true
 
             anchors {
-                bottom: mainChatBox.bottom
+                verticalCenter: mainChatBox.verticalCenter
+                horizontalCenter: mainChatBox.horizontalCenter
+            }
+
+            background: Rectangle {
+                border.color: "black"
+                width: mainWindow.width - leftRetangle.width - 100 - 20
+                height: mainChatBox.height * 0.4
             }
         }
     }
