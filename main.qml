@@ -14,7 +14,7 @@ Window {
         id: topRectangle
         color: "#350d36"
         width: mainWindow.width
-        height: 50
+        height: 80
 
         anchors {
             top: mainWindow.top
@@ -32,6 +32,175 @@ Window {
             left: mainWindow.left
             top: topRectangle.bottom
             bottom: mainWindow.bottom
+        }
+    }
+
+    Rectangle {
+        id: chatListViewRect
+        width: mainWindow.width - leftRetangle.width
+        height: mainWindow.height - topRectangle.height - mainChatBox.height - 60
+        border.color: "red"
+
+        anchors {
+            top: topRectangle.bottom
+            left: leftRetangle.right
+        }
+
+        ListView {
+            id: chatListView
+            width: mainWindow.width - leftRetangle.width
+            height: mainWindow.height - topRectangle.height - mainChatBox.height - 60
+
+            boundsBehavior: Flickable.StopAtBounds
+
+            ScrollBar.vertical: ScrollBar {
+                active: true
+            }
+
+            clip: true
+
+            model: ListModel {
+                ListElement {
+                    name: "John"
+                    message: "Hello"
+                }
+                ListElement {
+                    name: "Alice"
+                    message: "Hi"
+                }
+                ListElement {
+                    name: "Bob"
+                    message: "Hello"
+                }
+                ListElement {
+                    name: "John"
+                    message: "Hello"
+                }
+                ListElement {
+                    name: "Alice"
+                    message: "Hi"
+                }
+                ListElement {
+                    name: "Bob"
+                    message: "Hello"
+                }
+                ListElement {
+                    name: "John"
+                    message: "Hello"
+                }
+                ListElement {
+                    name: "Alice"
+                    message: "Hi"
+                }
+                ListElement {
+                    name: "Bob"
+                    message: "Hello"
+                }
+                ListElement {
+                    name: "John"
+                    message: "Hello"
+                }
+                ListElement {
+                    name: "Alice"
+                    message: "Hi"
+                }
+                ListElement {
+                    name: "Bob"
+                    message: "Hello"
+                }
+                ListElement {
+                    name: "John"
+                    message: "Hello"
+                }
+                ListElement {
+                    name: "Alice"
+                    message: "Hi"
+                }
+                ListElement {
+                    name: "Bob"
+                    message: "Hello"
+                }
+                ListElement {
+                    name: "John"
+                    message: "Hello"
+                }
+                ListElement {
+                    name: "Alice"
+                    message: "Hi"
+                }
+                ListElement {
+                    name: "Bob"
+                    message: "Hello"
+                }
+                ListElement {
+                    name: "John"
+                    message: "Hello"
+                }
+                ListElement {
+                    name: "Alice"
+                    message: "Hi"
+                }
+                ListElement {
+                    name: "Bob"
+                    message: "Hello"
+                }
+                ListElement {
+                    name: "John"
+                    message: "Hello"
+                }
+                ListElement {
+                    name: "Alice"
+                    message: "Hi"
+                }
+                ListElement {
+                    name: "Bob"
+                    message: "Hello"
+                }
+                ListElement {
+                    name: "John"
+                    message: "Hello"
+                }
+                ListElement {
+                    name: "Alice"
+                    message: "Hi"
+                }
+                ListElement {
+                    name: "Bob"
+                    message: "Hello"
+                }
+            }
+
+            delegate: Rectangle {
+                    width: chatListViewRect.width
+                    height: 60
+
+                    color: (chatListView.currentIndex == index) ? "lightgray" : "white"
+
+                    Text {
+                        text: model.name + ": " + model.message
+                        font.bold: true
+                        font.pointSize: 14
+                        wrapMode: Text.Wrap
+                        elide: Text.ElideRight
+                        padding: 10
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: model.name === "John" ? Text.AlignRight : Text.AlignLeft
+                        color: "black"
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+
+                    onEntered: {
+                        chatListView.currentIndex = index;
+                    }
+                }
+            }
+
+            Component.onCompleted: {
+                chatListView.currentIndex = -1;
+            }
         }
     }
 
@@ -57,6 +226,7 @@ Window {
             font.family: chatFont.font.family
             font.pixelSize: 35
             selectByMouse: true
+            wrapMode: Text.Wrap
 
             anchors {
                 verticalCenter: mainChatBox.verticalCenter
