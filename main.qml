@@ -37,20 +37,18 @@ Window {
 
     Rectangle {
         id: chatListViewRect
-        width: mainWindow.width - leftRetangle.width - 100
+        width: mainWindow.width - leftRetangle.width
         height: mainWindow.height - topRectangle.height - mainChatBox.height - 60
         border.color: "red"
 
         anchors {
-            bottom:  mainChatBox.top
-            bottomMargin: 20
-
+            top: topRectangle.bottom
             left: leftRetangle.right
-            leftMargin: 50
         }
 
         ListView {
-            width: mainWindow.width - leftRetangle.width - 100
+            id: chatListView
+            width: mainWindow.width - leftRetangle.width
             height: mainWindow.height - topRectangle.height - mainChatBox.height - 60
 
             boundsBehavior: Flickable.StopAtBounds
@@ -172,16 +170,36 @@ Window {
                 }
             }
 
-            delegate: Text {
-                text: model.name + ": " + model.message
-                font.bold: true
-                font.pointSize: 14
-                wrapMode: Text.Wrap
-                elide: Text.ElideRight
-                padding: 10
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: model.name === "John" ? Text.AlignRight : Text.AlignLeft
-                color: "black"
+            delegate: Rectangle {
+                    width: chatListViewRect.width
+                    height: 60
+
+                    color: (chatListView.currentIndex == index) ? "lightgray" : "white"
+
+                    Text {
+                        text: model.name + ": " + model.message
+                        font.bold: true
+                        font.pointSize: 14
+                        wrapMode: Text.Wrap
+                        elide: Text.ElideRight
+                        padding: 10
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: model.name === "John" ? Text.AlignRight : Text.AlignLeft
+                        color: "black"
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+
+                    onEntered: {
+                        chatListView.currentIndex = index;
+                    }
+                }
+            }
+
+            Component.onCompleted: {
+                chatListView.currentIndex = -1;
             }
         }
     }
