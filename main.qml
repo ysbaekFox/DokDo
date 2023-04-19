@@ -39,7 +39,6 @@ Window {
         id: chatListViewRect
         width: mainWindow.width - leftRetangle.width
         height: mainWindow.height - topRectangle.height - mainChatBox.height - 60
-        border.color: "red"
 
         anchors {
             top: topRectangle.bottom
@@ -48,6 +47,7 @@ Window {
 
         ListView {
             id: chatListView
+
             width: mainWindow.width - leftRetangle.width
             height: mainWindow.height - topRectangle.height - mainChatBox.height - 60
 
@@ -60,114 +60,6 @@ Window {
             clip: true
 
             model: ListModel {
-                ListElement {
-                    name: "John"
-                    message: "Hello"
-                }
-                ListElement {
-                    name: "Alice"
-                    message: "Hi"
-                }
-                ListElement {
-                    name: "Bob"
-                    message: "Hello"
-                }
-                ListElement {
-                    name: "John"
-                    message: "Hello"
-                }
-                ListElement {
-                    name: "Alice"
-                    message: "Hi"
-                }
-                ListElement {
-                    name: "Bob"
-                    message: "Hello"
-                }
-                ListElement {
-                    name: "John"
-                    message: "Hello"
-                }
-                ListElement {
-                    name: "Alice"
-                    message: "Hi"
-                }
-                ListElement {
-                    name: "Bob"
-                    message: "Hello"
-                }
-                ListElement {
-                    name: "John"
-                    message: "Hello"
-                }
-                ListElement {
-                    name: "Alice"
-                    message: "Hi"
-                }
-                ListElement {
-                    name: "Bob"
-                    message: "Hello"
-                }
-                ListElement {
-                    name: "John"
-                    message: "Hello"
-                }
-                ListElement {
-                    name: "Alice"
-                    message: "Hi"
-                }
-                ListElement {
-                    name: "Bob"
-                    message: "Hello"
-                }
-                ListElement {
-                    name: "John"
-                    message: "Hello"
-                }
-                ListElement {
-                    name: "Alice"
-                    message: "Hi"
-                }
-                ListElement {
-                    name: "Bob"
-                    message: "Hello"
-                }
-                ListElement {
-                    name: "John"
-                    message: "Hello"
-                }
-                ListElement {
-                    name: "Alice"
-                    message: "Hi"
-                }
-                ListElement {
-                    name: "Bob"
-                    message: "Hello"
-                }
-                ListElement {
-                    name: "John"
-                    message: "Hello"
-                }
-                ListElement {
-                    name: "Alice"
-                    message: "Hi"
-                }
-                ListElement {
-                    name: "Bob"
-                    message: "Hello"
-                }
-                ListElement {
-                    name: "John"
-                    message: "Hello"
-                }
-                ListElement {
-                    name: "Alice"
-                    message: "Hi"
-                }
-                ListElement {
-                    name: "Bob"
-                    message: "Hello"
-                }
             }
 
             delegate: Rectangle {
@@ -201,6 +93,14 @@ Window {
             Component.onCompleted: {
                 chatListView.currentIndex = -1;
             }
+
+            Connections {
+                target: mainChatTextField
+
+                function onSendMessage(msg) {
+                    chatListView.model.append({"name": "ysbaek", "message": msg})
+                }
+            }
         }
     }
 
@@ -220,6 +120,9 @@ Window {
 
         TextField {
             id: mainChatTextField
+
+            signal sendMessage(string msg)
+
             width: mainWindow.width - leftRetangle.width - 100 - 20
             height: mainChatBox.height * 0.4
 
@@ -237,6 +140,10 @@ Window {
                 border.color: "black"
                 width: mainWindow.width - leftRetangle.width - 100 - 20
                 height: mainChatBox.height * 0.4
+            }
+
+            onAccepted: {
+                mainChatTextField.sendMessage("HELLO")
             }
         }
     }
