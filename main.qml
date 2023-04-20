@@ -95,7 +95,7 @@ Window {
             }
 
             Connections {
-                target: mainChatTextField
+                target: mainChatTextArea
 
                 function onSendMessage(msg) {
                     chatListView.model.append({"name": "ysbaek", "message": msg})
@@ -118,8 +118,8 @@ Window {
             bottomMargin: 20
         }
 
-        TextField {
-            id: mainChatTextField
+        TextArea {
+            id: mainChatTextArea
 
             signal sendMessage(string msg)
 
@@ -129,7 +129,7 @@ Window {
             font.family: chatFont.font.family
             font.pixelSize: 35
             selectByMouse: true
-            wrapMode: Text.Wrap
+            wrapMode: Text.WordWrap
 
             anchors {
                 verticalCenter: mainChatBox.verticalCenter
