@@ -142,8 +142,16 @@ Window {
                 height: mainChatBox.height * 0.4
             }
 
-            onAccepted: {
-                mainChatTextField.sendMessage("HELLO")
+            Keys.onPressed: (event)=> {
+                if ( event.key === Qt.Key_Return && (event.modifiers & Qt.AltModifier) ) {
+                    mainChatTextField.insert(mainChatTextField.cursorPosition, '\n')
+                    console.log("go new line")
+                }
+                else if( event.key === Qt.Key_Return )
+                {
+                    mainChatTextField.sendMessage(mainChatTextField.text)
+                    mainChatTextField.clear()
+                }
             }
         }
     }
