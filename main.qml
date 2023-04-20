@@ -144,13 +144,17 @@ Window {
 
             Keys.onPressed: (event)=> {
                 if ( event.key === Qt.Key_Return && (event.modifiers & Qt.AltModifier) ) {
-                    mainChatTextField.insert(mainChatTextField.cursorPosition, '\n')
-                    console.log("go new line")
+                    mainChatTextArea.insert(mainChatTextArea.cursorPosition, '\n')
+                    mainChatTextArea.background.height += mainChatTextArea.font.pixelSize
+                    mainChatTextArea.height += mainChatTextArea.font.pixelSize
                 }
                 else if( event.key === Qt.Key_Return )
                 {
-                    mainChatTextField.sendMessage(mainChatTextField.text)
-                    mainChatTextField.clear()
+                    event.accepted = true
+                    mainChatTextArea.sendMessage(mainChatTextArea.text)
+                    mainChatTextArea.height = mainChatBox.height * 0.4
+                    mainChatTextArea.background.height = mainChatBox.height * 0.4
+                    mainChatTextArea.clear()
                 }
             }
         }
