@@ -8,6 +8,7 @@ Window {
     visible: true
     title: qsTr("DokDo-Chat")
 
+    property int fontSize: 14
     property FontLoader chatFont: FontLoader { id: font; source: "/resources/fonts/AppleSDGothicNeoR.ttf" }
 
     Rectangle {
@@ -63,21 +64,37 @@ Window {
             }
 
             delegate: Rectangle {
+                    id: chatTextRect
                     width: chatListViewRect.width
                     height: 60
 
                     color: (chatListView.currentIndex == index) ? "lightgray" : "white"
 
+                    Image {
+                        id: profileImage
+                        width: 50
+                        height: 50
+
+                        source: "/resources/images/default_profile.png"
+                        anchors {
+                            left: chatTextRect.left
+                        }
+                    }
+
                     Text {
                         text: model.name + ": " + model.message
                         font.bold: true
-                        font.pointSize: 14
+                        font.pointSize: fontSize
                         wrapMode: Text.Wrap
                         elide: Text.ElideRight
                         padding: 10
                         verticalAlignment: Text.AlignVCenter
                         horizontalAlignment: model.name === "John" ? Text.AlignRight : Text.AlignLeft
                         color: "black"
+
+                        anchors {
+                            left: profileImage.right
+                        }
                 }
 
                 MouseArea {
