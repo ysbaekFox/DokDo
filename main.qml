@@ -34,6 +34,36 @@ Window {
             top: topRectangle.bottom
             bottom: mainWindow.bottom
         }
+
+        Button {
+            id: addChannelBtn
+            width: leftRetangle.width * 0.8
+            height: 50
+
+            Text {
+                id: name
+                text: qsTr("+")
+                color: "white"
+                font.pixelSize: 35
+                font.family: chatFont.font.family
+
+                anchors {
+                    centerIn: parent
+                }
+            }
+
+
+            anchors {
+                horizontalCenter: leftRetangle.horizontalCenter
+            }
+
+            background: Rectangle {
+                width: leftRetangle.width * 0.8
+                height: 50
+                color: "#3f0e40"
+                //color: parent.down ? "#bbbbbb" : (parent.hovered ? "#d6d6d6" : "#f6f6f6")
+            }
+        }
     }
 
     Rectangle {
