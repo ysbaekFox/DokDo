@@ -179,7 +179,9 @@ Window {
         id: mainChatBox
         width: mainWindow.width - leftRetangle.width - 100
         height: 219
-        border.color: "black"
+        color: "#f8f8f8"
+        border.color: "#e2e2e2"
+        border.width: 2
         radius: 20
 
         anchors {
@@ -194,11 +196,11 @@ Window {
 
             signal sendMessage(string msg)
 
-            width: mainWindow.width - leftRetangle.width - 100 - 20
+            width: mainWindow.width - leftRetangle.width - 100 - 4
             height: mainChatBox.height * 0.4
 
             font.family: chatFont.font.family
-            font.pixelSize: 35
+            font.pixelSize: 20
             selectByMouse: true
             wrapMode: Text.WordWrap
 
@@ -208,8 +210,8 @@ Window {
             }
 
             background: Rectangle {
-                border.color: "black"
-                width: mainWindow.width - leftRetangle.width - 100 - 20
+                border.width: 0
+                width: mainWindow.width - leftRetangle.width - 100 - 4
                 height: mainChatBox.height * 0.4
             }
 
