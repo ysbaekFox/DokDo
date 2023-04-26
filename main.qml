@@ -34,6 +34,60 @@ Window {
             top: topRectangle.bottom
             bottom: mainWindow.bottom
         }
+
+        Button {
+            id: addChannelBtn
+            width: leftRetangle.width * 0.8
+            height: 50
+            hoverEnabled: false
+
+            Text {
+                id: name
+                text: qsTr("채널 추가")
+                color: "#c1b1c2"
+                font.pixelSize: 25
+                font.family: chatFont.font.family
+
+                anchors {
+                    centerIn: parent
+                }
+            }
+
+
+            anchors {
+                top: leftRetangle.top
+                topMargin: 20
+                horizontalCenter: leftRetangle.horizontalCenter
+            }
+
+            background: Rectangle {
+                id: backgroundRect
+                border.width: 2
+                border.color: "#c1b1c2"
+                radius: 15
+                width: leftRetangle.width * 0.8
+                height: 50
+                color: "#3f0e40"
+            }
+
+
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+
+                onEntered: {
+                    name.color = "white"
+                    backgroundRect.border.color = "white"
+                    backgroundRect.color = "#1164a3"
+                }
+
+                onExited: {
+                    name.color = "#c1b1c2"
+                    backgroundRect.border.color = "#c1b1c2"
+                    backgroundRect.color = "#3f0e40"
+                }
+            }
+        }
     }
 
     Rectangle {
