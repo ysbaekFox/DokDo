@@ -39,12 +39,13 @@ Window {
             id: addChannelBtn
             width: leftRetangle.width * 0.8
             height: 50
+            hoverEnabled: false
 
             Text {
                 id: name
-                text: qsTr("+")
-                color: "white"
-                font.pixelSize: 35
+                text: qsTr("채널 추가")
+                color: "#c1b1c2"
+                font.pixelSize: 25
                 font.family: chatFont.font.family
 
                 anchors {
@@ -54,14 +55,37 @@ Window {
 
 
             anchors {
+                top: leftRetangle.top
+                topMargin: 20
                 horizontalCenter: leftRetangle.horizontalCenter
             }
 
             background: Rectangle {
+                id: backgroundRect
+                border.width: 2
+                border.color: "#c1b1c2"
+                radius: 15
                 width: leftRetangle.width * 0.8
                 height: 50
                 color: "#3f0e40"
-                //color: parent.down ? "#bbbbbb" : (parent.hovered ? "#d6d6d6" : "#f6f6f6")
+            }
+
+
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+
+                onEntered: {
+                    name.color = "white"
+                    backgroundRect.border.color = "white"
+                    backgroundRect.color = "#1164a3"
+                }
+
+                onExited: {
+                    name.color = "#c1b1c2"
+                    backgroundRect.border.color = "#c1b1c2"
+                    backgroundRect.color = "#3f0e40"
+                }
             }
         }
     }
